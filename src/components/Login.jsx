@@ -4,7 +4,7 @@ function Login(){
         <div className="body_box">
 <body>
   <div className="container_box">  
-<H1>LOGIN</H1>
+<h1>LOGIN</h1>
 <form action="">
     <label htmlFor="">Email Address</label>
     <input type="email" name="Email" id="Email" placeholder="Email"/> 
@@ -14,6 +14,7 @@ function Login(){
 </form>
   </div>
 </body>
+</div>
       </main>
     )
 }

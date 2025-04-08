@@ -1,9 +1,9 @@
 function Home(){
     return(
         
- <body className="body_box"> 
+
     
-    <main>
+    <main className="body_box">
         <div className="container_box">
         <h1>CODESQUAD COMICS</h1>
         <p>CodeSquad Comics is a collection of graphic novels read by Lanae. 
@@ -39,14 +39,14 @@ function Home(){
                 <a href="#">Details</a> 
             </p>
         </article>
-        <Article>
+        <article>
             <p> <a href="#"> <img src="public/images/lumberjanes.jpg" alt="Picture of the 5 teens drawn as cartoon caracters"/></a> 
                 <em>Lumberjanes Vol.1</em> 
                 by Noelle Stevenson 
                 4 Stars 
                 <a href="#">Details</a>
             </p>
-        </Article>
+        </article>
         <article>
             <p> <a href="#"><img src="public/images/one-piece.jpg" alt="Picture of one piece character with red vest and straw hat with his two friends having fun"/> </a>
                 <em>One Piece, Vol.1: Romance Dawn</em> 
@@ -55,7 +55,7 @@ function Home(){
             </p>
         </article>
         <article>
-            <p> <a href="#"><img src="public/images/wake.jpg" alt="Pictures of a group of minorities" style="width: 200px;"/></a> 
+            <p> <a href="#"><img src="public/images/wake.jpg" alt="Pictures of a group of minorities" /></a> 
                 <em>Wake: THe Hidden History of Women Led Slave Revolts</em> 
                 by Rebecca Hall 
                 4 Stars 
@@ -63,13 +63,13 @@ function Home(){
             </p>
         </article>
         <article>
-            <P><a href="#"><img src="public/images/black-panther.jpg"  alt="Picture of man wearing a super hero suit that looks like a black panther"/></a>
+            <p><a href="#"><img src="public/images/black-panther.jpg"  alt="Picture of man wearing a super hero suit that looks like a black panther"/></a>
            
                 <em>Black Panther: A Nation Under our Feet Book 1</em> 
                 by Ta-Nehisi Coates 
                 3 Stars 
                 <a href="#">Details</a>
-           </P> 
+           </p> 
         </article>
         <article>
             <p> <a href="#"><img src="public/images/the-walking-dead.jpg" alt="Picture of walking dead comic which has zombies"/></a> 
@@ -103,7 +103,7 @@ function Home(){
                 <em>Queer: A Graphic History</em> 
                 by Meg-John Barker 
                 4 Stars
-                <a href="#">Details
+                <a href="#">Details /</a>
             </p>
         </article>
         <article>
@@ -115,11 +115,13 @@ function Home(){
                 <a href="#">Details</a>
             </p>
         </article>
-        <Button>DISPLAY MORE</Button>
+        <button>DISPLAY MORE</button>
         </div>
         </div>
     
+   
     </main>
+  
 
     )
 }

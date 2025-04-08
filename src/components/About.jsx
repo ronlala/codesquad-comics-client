@@ -13,12 +13,12 @@ function About(){
             </p>
     
         <h2>COLLECTION DETAILS</h2>
-            <Ul>
+            <ul>
                 <li> Total Comic Books: 12</li>
                 <li>Latest additions: 12</li>
                 <li>5-Star Ratings: 5</li>
                 <li>Publishers: 9</li>
-            </Ul>
+            </ul>
     </div>
         </main>
         

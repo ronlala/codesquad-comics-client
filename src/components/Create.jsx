@@ -1,10 +1,9 @@
 function Create(){
     return(
-       <main>
-       <body className="body_box">
+       <main className="body_box">
     <div className="container_box">
     <h1>CREATE NEW COMIC</h1>
-    <Form>
+    <form>
         <label htmlFor="Text">Title</label>
         <input type="Title" id="Title" name="Title" placeholder="Title"/> 
         <label htmlFor="Author">Author</label>
@@ -27,14 +26,13 @@ function Create(){
         <label htmlFor="Number">Number of Pages</label>
         <input type="Number" id="Number" name="Number" placeholder="Number of pages"/>
         <label htmlFor="Rating">Rating</label>
-        <input type="rating" id="rating" name="rating"  maxlength="3" size="3" />
+        <input type="rating" id="rating" name="rating"  maxLength="3" size="3" />
         <label htmlFor="Synopsis">Synopsis</label>
         <textarea name="Synopsis" id="Synopsis" placeholder="Synopsis"></textarea>
         <button>SUBMIT</button>
 
-    </Form>
+    </form>
 </div>
-</body>
 </main>
     )
 }

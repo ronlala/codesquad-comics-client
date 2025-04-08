@@ -18,6 +18,7 @@ function Signup(){
 </form>
   </div>
 </body>
+</div>
       </main>
     )
 }
