@@ -1,8 +1,11 @@
 import books from "../data/books";
+import { useState } from "react";
+import { useEffect } from "react";
 
 function Home(){
+    const [bookie, setBookies] = useState(null)
+    useEffect(() =>{setBookies(books);},[]);
     return(
-    
     <main className="body_box">
         <div className="container_box">
         <h1>CODESQUAD COMICS</h1>
