@@ -1,26 +1,30 @@
+import books from "../data/books";
+
 function Admin(){
     return(
 <main className="body_box">
   
 <div className="container_box"> 
+
     <h1>ADMIN PAGE</h1>
     <button>ADD NEW COMIC</button> 
     <div className="admintable"> 
     <table>
       <thead>
-        <tr>
+        <tr >
           <th>COMIC TITLE</th>
           <th>EDIT</th>
           <th>DELETE</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Batman: the Dark Knight Returns</td>
+      {books.map((book) => ( 
+        <tr key={book._id}>
+          <td>{book.title}</td>
           <td><button>EDIT</button></td>
           <td><button>DELETE</button></td>
-        </tr>
-        <tr>
+        </tr> ))}
+        {/* <tr>
           <td>Black Panther: A Nation Under Our Feet Book 1</td>
           <td><button>EDIT</button></td>
           <td><button>DELETE</button></td>
@@ -74,7 +78,7 @@ function Admin(){
           <td>Watchmen</td>
           <td><button>EDIT</button></td>
           <td><button>DELETE</button></td>
-        </tr>
+        </tr> */}
       </tbody>
     </table>
     </div>

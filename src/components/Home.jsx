@@ -1,7 +1,7 @@
+import books from "../data/books";
+
 function Home(){
     return(
-        
-
     
     <main className="body_box">
         <div className="container_box">
@@ -14,32 +14,42 @@ function Home(){
             </div>
       <div className="container_box">   
      <div className="bodysection">      
-            <article>
-            <h2>COMPLETE COMIC COLLECTION</h2>
-            <p><a href="#"> <img src="public/images/fun-home.jpg" alt="Picture of fun home comic by alison bechdel"/></a> 
-                <em>Fun Home:A Family Tragicomic </em>
-                by Alison bechdel 
-                5 stars 
+         <h2>COMPLETE COMIC COLLECTION</h2>
+         
+         {books.map((book) => (
+            // <p key={book._id}>
+            // {book.img}
+            // {book.title}
+            // {book.author}
+            // {book.genre}
+            // {book.publisher}
+            // {book.rating}
+            // <a href="#">Details</a>
+
+            <p key={book._id}><a href="#"> <img src={`./images/${book.imageUrl}`}/></a> 
+                <em>{book.title}</em>
+                by {book.author}
+                {book.rating} stars 
                 <a href="#">Details</a>
-            </p> 
-        </article>
-        <article>
+        
+            </p>)) } 
+        {/* <article>
             <p> <a href="#"><img src="public/images/watchmen.jpg" alt="Bright picture of the watchman comic " /> </a> 
                 <em>The watchmen </em>
                 by Alan moore 
                 5 stars 
                 <a href="#">Details</a>
             </p> 
-        </article>
-        <article>
+        </article> */}
+        {/* <article>
             <p> <a href="#"> <img src="public/images/hunter-x-hunter.jpg" alt="Picture of the hunter comic is a boy riding a frog"/> </a>
                 <em>Hunter X Hunter Vol. 1</em> 
                 by Yoshiro Togashi 
                 5 stars 
                 <a href="#">Details</a> 
             </p>
-        </article>
-        <article>
+        </article> */}
+        {/* <article>
             <p> <a href="#"> <img src="public/images/lumberjanes.jpg" alt="Picture of the 5 teens drawn as cartoon caracters"/></a> 
                 <em>Lumberjanes Vol.1</em> 
                 by Noelle Stevenson 
@@ -114,7 +124,7 @@ function Home(){
                 4 Stars 
                 <a href="#">Details</a>
             </p>
-        </article>
+        </article> */}
         <button>DISPLAY MORE</button>
         </div>
         </div>
