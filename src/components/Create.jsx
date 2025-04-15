@@ -1,9 +1,32 @@
+// import { useState } from "react";
+
 function Create(){
+    // const [formValue, setFormValues] = useState({
+    //     title: "",
+    //     author: "",
+    //     publisher: "",
+    //     genre: "",
+    //     pages: 0,
+    //     rating: 0,
+    //     synopsis: "",
+    // })
+    
+    const  handleFormSubmission =(e) => {
+       e.preventDefault();
+       console.log(handleFormSubmission,"form submission done");
+       console.log(e.target.title.value)
+       console.log(e.target.author.value)
+       console.log(e.target.publisher.value)
+       console.log(e.target.genre.value)
+       console.log(e.target.pages.value)
+       console.log(e.target.rating.value)
+       console.log(e.target.synopsis.value)
+    }
     return(
        <main className="body_box">
     <div className="container_box">
     <h1>CREATE NEW COMIC</h1>
-    <form>
+    <form onSubmit={handleFormSubmission}>
         <label htmlFor="Text">Title</label>
         <input type="Title" id="Title" name="Title" placeholder="Title"/> 
         <label htmlFor="Author">Author</label>

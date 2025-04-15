@@ -3,9 +3,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 function Home(){
-    const [bookie, setBookies] = useState(null)
+    const [bookie, setBookies] = useState([])
+
     useEffect(() =>{setBookies(books);},[]);
-    return(
+     console.log(bookie);
+
+return(
     <main className="body_box">
         <div className="container_box">
         <h1>CODESQUAD COMICS</h1>
@@ -19,7 +22,7 @@ function Home(){
      <div className="bodysection">      
          <h2>COMPLETE COMIC COLLECTION</h2>
          
-         {books.map((book) => (
+         {bookie.map((book) => (
             // <p key={book._id}>
             // {book.img}
             // {book.title}
@@ -29,10 +32,10 @@ function Home(){
             // {book.rating}
             // <a href="#">Details</a>
 
-            <p key={book._id}><a href="#"> <img src={`./images/${book.imageUrl}`}/></a> 
-                <em>{book.title}</em>
-                by {book.author}
-                {book.rating} stars 
+            <p key={bookie._id}><a href="#"> <img src={`./images/${book.imageUrl}`}/></a> 
+                <em>{bookie.title}</em>
+                by {bookie.author}
+                {bookie.rating} stars 
                 <a href="#">Details</a>
         
             </p>)) } 

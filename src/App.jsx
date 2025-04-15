@@ -11,7 +11,7 @@ import { useState } from 'react'
 
 function App() {
  //state function for setting the user
-   const [user,setUser] = useState(null)
+   const [user,setUser] = useState(JSON.parse(localStorage.getItem("user"))||{});
 
   return (
    <div>

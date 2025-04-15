@@ -1,6 +1,11 @@
+import { useEffect, useState } from "react";
 import books from "../data/books";
 
 function Admin(){
+  const [bookie, setBookies] = useState([])
+  useEffect(() =>{ setBookies(books);},[]);
+   console.log(bookie);
+    
     return(
 <main className="body_box">
   

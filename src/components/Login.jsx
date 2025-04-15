@@ -1,11 +1,17 @@
 import { useState } from "react";
 
 function Login({user, setUser}){
+  const  handleloginSubmission =(e) => {
+    e.preventDefault();
+    console.log(handleloginSubmission,"form submission done");
+    console.log(e.target.email.value)
+    console.log(e.target.password.value)
+ }
   return(
   <main>
   <div className="body_box">
 <h1>LOGIN</h1>
-<form action="">
+<form onSubmit={handleloginSubmission}>
     <label htmlFor="">Email Address</label>
     <input type="email" id="email2" name="emailer" placeholder="Email"/> 
     <label htmlFor="">Password</label> 
