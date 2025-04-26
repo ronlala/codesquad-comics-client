@@ -7,6 +7,7 @@ import Login from './components/Login'
 import Signup from './components/Signup'
 import Update from './components/Update'
 import { useState } from 'react'
+import {Routes,Route} from 'react-router-dom'
 
 
 function App() {
@@ -16,6 +17,16 @@ function App() {
   return (
    <div>
     <header user={user} setUser={setUser}/>
+<Routes>
+  <Route path="/" element={ <Home/>} />
+  <Route path= "/about" element={<About/>} />
+  <Route path= "/admin" element={<Admin/>} />
+  <Route path= "/Create" element={<Create/>} />
+  <Route path= "/Signup" element={<Signup/>} />
+  <Route path= "/Login" element={<Login/>} />
+  <Route path= "/Update" element={<Update/>} />
+</Routes>
+    <footer />
     <About />
     <Admin />
     <Create />
