@@ -4,7 +4,6 @@ import { useEffect } from "react";
 
 function Home(){
     const [bookie, setBookies] = useState([])
-
     useEffect(() =>{setBookies(books);},[]);
      console.log(bookie);
 
