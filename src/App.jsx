@@ -1,34 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+import { useState ,useEffect } from "react";
+import {Routes,Route} from 'react-router-dom';
+import About from './components/About';
+import Admin from './components/Admin';
+import Create from './components/Create';
+import Home from './components/Home';
+import Header from "./shared/Header";
+import Footer from "./shared/Footer";
+// import Login from './components/Login'
+// import Signup from './components/Signup'
+import Update from './components/Update';
+import './styles.css';
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+ //state function for setting the user
+  //  const [user,setUser] = useState(JSON.parse(localStorage.getItem("user"))||{});
+    const [user, setUser] = useState(() => {
+    try {
+      const storedUser = localStorage.getItem("user");
+      return storedUser ? JSON.parse(storedUser) : {};
+    } catch (error) {
+      console.error("Failed to parse user from localStorage:", error);
+      return {};
+    }
+  });
+
+ useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+   <div>
+     <Header user={user} setUser={setUser}/> 
+<Routes>
+  <Route path="/" element={<Home/>} />
+  <Route path= "/about" element={<About/>} />
+  <Route path= "/admin" element={<Admin/>} />
+  <Route path= "/create" element={<Create/>} />
+  <Route path= "/home" element={<Home/>}></Route>
+  {/* <Route path= "/Signup" element={<Signup/>} /> */}
+  {/* <Route path= "/Login" element={<Login/>} /> */}
+  <Route path= "/update" element={<Update/>} />
+</Routes>
+    <Footer />
+    {/* <Signup user={user} setUser={setUser}/>
+    <Login user={user} setUser={setUser}/> */}
+   </div>
   )
 }
 
