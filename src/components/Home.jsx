@@ -1,6 +1,7 @@
 import books from "../data/books";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Home(){
     const [bookie, setBookies] = useState([])
@@ -31,11 +32,11 @@ return(
             // {book.rating}
             // <a href="#">Details</a>
 
-            <p key={bookie._id}><a href="#"> <img src={`./images/${book.imageUrl}`}/></a> 
-                <em>{bookie.title}</em>
-                by {bookie.author}
-                {bookie.rating} stars 
-                <a href="#">Details</a>
+            <p key={book._id}><a href="#"> <img src={`./images/${book.imageUrl}`}/></a> 
+                <br /> <em>{book.title}</em> <br />
+                Author: {book.author} <br />
+                {book.rating} stars <br />
+                <Link to="/comiccard">Details</Link>
         
             </p>)) } 
         {/* <article>

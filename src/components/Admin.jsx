@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import books from "../data/books";
+import { Link } from "react-router-dom"; 
+
 
 function Admin(){
   const [bookie, setBookies] = useState([])
@@ -12,13 +14,13 @@ function Admin(){
 <div className="container_box"> 
 
     <h1>ADMIN PAGE</h1>
-    <button>ADD NEW COMIC</button> 
+    <Link to="/create"><button>ADD NEW COMIC</button> </Link> 
     <div className="admintable"> 
     <table>
       <thead>
         <tr >
           <th>COMIC TITLE</th>
-          <th>EDIT</th>
+          <th>EDIT</th> 
           <th>DELETE</th>
         </tr>
       </thead>
@@ -26,8 +28,8 @@ function Admin(){
       {books.map((book) => ( 
         <tr key={book._id}>
           <td>{book.title}</td>
-          <td><button>EDIT</button></td>
-          <td><button>DELETE</button></td>
+          <Link to="/update"><td><button>EDIT</button></td></Link>
+          <Link to="/update"><td><button>DELETE</button></td> </Link>
         </tr> ))}
         {/* <tr>
           <td>Black Panther: A Nation Under Our Feet Book 1</td>
