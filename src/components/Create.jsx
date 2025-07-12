@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function Create(){
 // const navigate = useNavigate();
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const [errorMessage, setErrorMessage] = useState(null);
  const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ const [bookData, setBook] = useState({
        console.log("BookSubmitted");
 
     
-        fetch(API_BASE_URL`/create`, { 
+        fetch(`${API_BASE_URL}create/new`, { 
                 method: "POST", 
                 headers: {
                     "Content-Type": "application/json",
