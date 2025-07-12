@@ -1,33 +1,79 @@
-import books from "../data/books";
-import { useState } from "react";
-import { useEffect } from "react";
+// import booksData from "../data/books";
+import React,{ useState, useEffect} from "react";
+
+import { useParams,useNavigate } from "react-router-dom";
 
 function Update(){
-    const iD = "66b62a49-a8de-4914-ab3f-49fe0554c08a";
-    const [book, setBook]= useState({books},[]);
+    const {bookID} =useParams();
+    const navigate = useNavigate();
+
+    
+    const [books,setBook]= useState({
+     title: "",
+        author: "",
+        publisher: "",
+        genre: "",
+        pages: "", 
+        rating: "", 
+        synopsis: "",
+
+
+    });
+    const url = "https://course-project-codesquad-comics-server.onrender.com/api/books"
    
-    
+
+
     useEffect(() => { 
-        const foundBook = find(book => book._id === iD);
-        setBook(foundBook), [book]}) 
+        const bookData = async () => {
+            try{
+
+            const response = await
+            fetch(`${url}/${bookID}`,{
+            method: "GET",
+            body: JSON.stringify(books),})
+        .then((response) => response.json())
+        .then((result) => {console.log(result); setBook(result.data);navigate("/admin")})
+        .catch((error) => console.log(error));
+    },{bookID})
+        // const foundBook = find(booksData => booksData._id === iD);
+        // setBook(foundBook), [iD]}) 
         
-        const handleSubmitForm =(e) => {
-        e.preventDefault();
-        const formData = Update; formData(e.target);
     
-    }
+    const handleSubmitForm =(e) => {
+        e.preventDefault();
+        const body={title:e.target.title.value,
+                    author:e.target.author.value,
+                    publisher:e.target.author.value,
+                    genre:e.target.genre.value,
+                    number:e.target.genre.value,
+                    rate:e.target.rate.value,
+                    synopsis:e.target.synopsis.value,
+}
+//will use the fetch command to get the iD to update 
+
+fetch(`https://course-project-codesquad-comics-server.onrender.com/api/books/${bookID}`,{
+    method: "PUT",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formBody),
+})
+.then((response)=> response.json())
+.then((result)=> console.log(result))
+.catch((error)=> console.log(error));
+}
     return(
         <main>
             <div className="body_box">
     <div className="container_box">
     <h1>Update</h1>
     <form onSubmit={handleSubmitForm}>
-    <label htmlFor="Text">Title</label>
-    <input type="Text" id="Titlebook" name="bookTitle" defaultValue="Title defaultValue stored in database"/> 
-    <label htmlFor="Author1">Author</label>
-    <input type="Text" id="Author1" name="Author1" defaultValue="Author defaultValue stored in database"/> 
-    <label htmlFor="Published">Publisher</label>
-    <select name="Publisher" id="Publishers" placeholder="select" > 
+    <label htmlFor="title">Title</label>
+    <input type="Text" id="title" name="title" defaultValue="Title defaultValue stored in database"/> 
+    <label htmlFor="author">Author</label>
+    <input type="Text" id="author" name="author" defaultValue="Author defaultValue stored in database"/> 
+    <label htmlFor="published">Publisher</label>
+    <select name="publisher" id="publisher" placeholder="select" > 
         <option defaultValue="" >Publisher defaultValue stored in database</option> 
         <option defaultValue="">Marvel</option>
         <option defaultValue="">DC Comics</option>
@@ -39,14 +85,14 @@ function Update(){
         <option defaultValue="">Top Shelf Productions</option>
         <option defaultValue="">VIZ Media LLC</option>
     </select>
-    <label htmlFor="Genere">Genre</label>
-    <input type="text" id="Genre2" name="Genre2" defaultValue="Genre data stored in database" />
-    <label htmlFor="Numbers">Number of Pages</label>
-    <input type="Number" id="Num" name="Nums" default="255"/>
-    <label htmlFor="Rate">Rating</label>
-    <input type="rating" id="rated" name="rating"  maxLength="3" size="3" />
-    <label htmlFor="Synopsis">Synopsis</label>
-    <input type="text" id="description" name="synopsis"/>
+    <label htmlFor="genre">Genre</label>
+    <input type="text" id="genre" name="genre" defaultValue="Genre data stored in database" />
+    <label htmlFor="number">Number of Pages</label>
+    <input type="number" id="number" name="number" default="255"/>
+    <label htmlFor="rate">Rating</label>
+    <input type="number" id="rate" name="rate"  maxLength="3" size="3" />
+    <label htmlFor="synopsis">Synopsis</label>
+    <input type="text" id="synopsis" name="synopsis"/>
     <button>Submit</button>
     </form>
 </div>

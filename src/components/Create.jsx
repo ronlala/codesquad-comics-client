@@ -1,38 +1,72 @@
-// import { useState } from "react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 
 function Create(){
-    // const [formValue, setFormValues] = useState({
-    //     title: "",
-    //     author: "",
-    //     publisher: "",
-    //     genre: "",
-    //     pages: 0,
-    //     rating: 0,
-    //     synopsis: "",
-    // })
-    
-    const  handleFormSubmission =(e) => {
+// const navigate = useNavigate();
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const [errorMessage, setErrorMessage] = useState(null);
+ const navigate = useNavigate();
+
+const [bookData, setBook] = useState({
+        title: "",
+        author: "",
+        publisher: "",
+        genre: "",
+        pages: "", 
+        rating: "", 
+        synopsis: "",
+    });
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        const name = e.target.name;
+        
+        setBook((prevBook) => ({
+            ...prevBook,
+            [name]: value
+        }))
+    };
+  console.log(bookData);
+
+    const  handleFormSubmission = async(e) => {
        e.preventDefault();
-       console.log(handleFormSubmission,"form submission done");
-       console.log(e.target.title.value)
-       console.log(e.target.author.value)
-       console.log(e.target.publisher.value)
-       console.log(e.target.genre.value)
-       console.log(e.target.pages.value)
-       console.log(e.target.rating.value)
-       console.log(e.target.synopsis.value)
-    }
+       console.log("BookSubmitted");
+
+    
+        fetch(API_BASE_URL`/create`, { 
+                method: "POST", 
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(bookData), 
+            })
+            .then((response) => response.json())
+            .then((result) => {
+                console.log(result)
+                setErrorMessage(result.error.message);}
+        )
+            .catch(error =>{
+                console.log(error)
+                setErrorMessage(error.message);
+            });
+        };
+ 
+            navigate("/admin");
+
+
+  console.log(errorMessage);
+
     return(
        <main className="body_box">
     <div className="container_box">
     <h1>CREATE NEW COMIC</h1>
     <form onSubmit={handleFormSubmission}>
         <label htmlFor="Text">Title</label>
-        <input type="Title" id="Title" name="Title" placeholder="Title"/> 
-        <label htmlFor="Author">Author</label>
-        <input type="Text" id="Author" name="Author" placeholder="Author"/> 
-        <label htmlFor="Publisher">Publisher</label>
-        <select name="Publisher" id="Publisher" placeholder="select" > 
+        <input type="title" id="title" name="title" placeholder="title" onChange={handleChange}/> 
+        <label htmlFor="author">Author</label>
+        <input type="Text" id="author" name="author" placeholder="author" onChange={handleChange}/> 
+        <label htmlFor="publisher">Publisher</label>
+        <select name="publisher" id="publisher" placeholder="select"  onChange={handleChange} > 
             <option value="" >Select</option> 
             <option value="">Marvel</option>
             <option value="">DC Comics</option>
@@ -44,16 +78,16 @@ function Create(){
             <option value="">Top Shelf Productions</option>
             <option value="">VIZ Media LLC</option>
         </select>
-        <label htmlFor="Genre">Genre</label>
-        <input type="text" id="Genre" name="Genre" placeholder="Genre" />
-        <label htmlFor="Number">Number of Pages</label>
-        <input type="Number" id="Number" name="Number" placeholder="Number of pages"/>
+        <label htmlFor="genre">Genre</label>
+        <input type="text" id="genre" name="genre" placeholder="genre" onChange={handleChange} />
+        <label htmlFor="pages">Number of Pages</label>
+        <input type="Number" id="pages" name="pages" placeholder="Number of pages"onChange={handleChange}/>
         <label htmlFor="Rating">Rating</label>
-        <input type="rating" id="rating" name="rating"  maxLength="3" size="3" />
-        <label htmlFor="Synopsis">Synopsis</label>
-        <textarea name="Synopsis" id="Synopsis" placeholder="Synopsis"></textarea>
+        <input type="rating" id="rating" name="rating"  maxLength="3" size="3"onChange={handleChange} />
+        <label htmlFor="synopsis">Synopsis</label>
+        <textarea name="Synopsis" id="synopsis" placeholder="synopsis"></textarea>
         <button>SUBMIT</button>
-
+        {errorMessage && <p>(errorMessage)</p>}
     </form>
 </div>
 </main>

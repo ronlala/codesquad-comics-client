@@ -1,0 +1,260 @@
+:root{
+--blue: #063c5e;
+--white: #ffffff;
+--yellow: #FCCF14;
+--lightgrey: #f2f2f2;
+--darkgrey: #808080;
+--Teal:#006B6B;
+--lightteal: #009E9E;
+}
+body {
+    width: 100%;
+    max-width: 200vw;
+    margin: auto;
+    overflow-x: hidden;
+}
+
+* { 
+    box-sizing: border-box;
+}
+
+
+.header_navbar{
+    background-color: var(--blue);
+    width: auto;
+    border: red 1px solid;
+    font-family: "Fredericka the Great", serif;
+    /* padding-left: 350px; */
+
+   
+
+}
+
+.header_navbar_list{
+    list-style-type: none;
+    list-style: none;
+    display: flex;
+    justify-content: right;
+}
+
+
+.header_navbar a:link, a:visited , a:hover {color: var(--white);}
+/* .header_navbar nav{
+    padding-bottom: 10px;
+    /* padding-left: 350px; */
+    /* border: purple 1px solid;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: auto;
+    justify-content: right;
+} */ 
+
+.header_navbar ul{
+    list-style-type: none;
+    list-style: none;
+    text-decoration: none;
+    
+   
+    display: flex;
+    justify-content: right;
+ 
+}
+.header_navbar li{
+    text-decoration: none;
+    padding-right: 10px;
+}
+
+
+.header_navbar img{
+    width: 150px;
+
+}
+
+.hamburger-menu{
+    /* position: absolute; */
+    right: 0;
+    
+    padding: 0.5rem 1rem;
+    color: Red;
+}
+.bodysection img{
+    width:200px;
+}
+
+
+
+.body_box {
+    background-image: linear-gradient(to Top, var(--Teal),var(--lightteal),var(--white));
+     border: 5px solid orange; 
+    
+ 
+}
+
+/* container box styling. all boxes that have a centered border white background */
+.container_box{
+    margin: 100px;
+    border:var(--blue) solid 5px;
+    width: 1000px ;
+    /* padding: 30px 10px 10px 30px; */
+    background-color: var(--white);  
+    display: flex;
+    flex-direction: column;
+}
+
+.container_box h2{
+    text-align: center;
+    color:var(--blue) ;
+    border: 1px solid orange;
+    flex-wrap: wrap;
+}
+    
+.container_box h1 { 
+    text-align: center; 
+    color: var(--blue);
+    flex-wrap: wrap;
+}    
+
+.container_box button { 
+    background-color: var(--yellow); 
+     color:var(--blue); 
+     display: flex;
+} 
+.container_box button[value="EDIT"] {
+    background-color: red;
+    color:var(--blue);
+}
+
+
+.footer_border{
+    border-top: 6px solid var(--yellow);
+    border-right: none;
+    border-left: none;
+    background-color:var(--blue);
+    /* color: var(--white); */
+    /* padding-left: 10px; */
+    width: auto;
+    display: flex;
+    border: 5px orchid solid;
+    font-family: "Fredericka the Great", serif;
+}
+.footer_border footer{
+display: flex; 
+border:#FCCF14 5px solid;
+}
+.footer_border_visitus{
+    flex-direction: row;
+    flex-wrap: wrap; 
+    border: 2px red solid;
+    padding-right: 100px;
+    
+}
+
+.footer_border a:link, a:visited , a:hover {color: var(--white);}
+
+
+.footer_border img{
+    width: 150px;
+   
+}
+.footer_border h2{
+    color: var(--yellow);
+
+}
+.fa-x-twitter{
+    color: black;
+}
+.admintable {
+    padding-bottom: 25px; 
+    /* border-collapse: separate; */
+    /* border: 1px solid ; */
+}
+.admintable table{
+  border-bottom: 1px solid;
+  border-collapse: collapse;
+  border: 1px solid;
+  border-right: 1px solid;
+  
+}
+.admintable thead{
+    background: var(--darkgrey);
+}
+.admintable tbody tr:nth-child(even){
+    background:var(--lightgrey);
+
+}
+
+.admintable table td{
+border-bottom: 1px solid;
+border-right: 1px solid;
+padding: 5px;
+padding-right: 7px;
+}
+
+/* .admintable_button_edit{ */
+    /* background-color: var(--blue); */
+    /* color: var(--white); */
+/* } */
+
+
+.wholecard{
+    margin: 5vh auto;
+    width: 80%;
+    max-width: 400%;
+    border-radius: 40px;
+    border:var(--yellow) solid 5px ;
+}
+.wholecard h2{
+    margin: auto;
+    color:var(--yellow);
+    text-align: center;
+    padding-bottom: 10px; 
+    padding: 5px;
+}
+/*  Top of Card formating */
+
+.cardtop{
+    background-color:  var(--blue);
+    border-radius:  40px;
+    border-bottom: solid 5px var(--yellow);
+    border-radius:  40px 40px  0  0;
+ 
+}
+/* Card image formating with white border */
+.cardtop img {
+    width: 400px;
+    margin: auto;
+    display: block;
+    border: var(--white) solid 6px;
+    border-radius: 40px ;
+}
+/* Bottom half of card with text information about the comic card. */
+.cardbottom{
+    border-top: none;
+    padding: 30px;
+    background-color: var(--white);
+    border-radius: 0 0 40px 40px;  
+    /* padding-right: 100px; */
+    /* padding-left: 100px;  */
+    /* border-radius: 50px; */   
+}
+
+@media screen  and (min-width: 320px) and (max-width: 767px){
+    .header_navbar ul {
+     display: flex;
+    }
+    .hamburger-menu{
+      display: none;
+    }
+     .footer_border{
+        display: flex;
+
+    }
+    .footer_border footer{
+        display: block;
+    }
+    .footer_border_visitus{
+        display: flex;
+    } 
+
+}   
