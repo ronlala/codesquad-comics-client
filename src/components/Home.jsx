@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 function Home(){
     const [bookie, setBookies] = useState([])
     useEffect(() =>{setBookies(books);},[]);

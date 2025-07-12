@@ -2,7 +2,7 @@
 import { useState, useEffect} from "react";
 
 import { useParams,useNavigate } from "react-router-dom";
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 function Update(){
     const {bookID} =useParams();
     const navigate = useNavigate();
