@@ -1,4 +1,4 @@
-function Header([user,setUser]){
+function Header(){
     return(
         
         <header> 

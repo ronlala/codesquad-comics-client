@@ -1,5 +1,5 @@
 // import booksData from "../data/books";
-import React,{ useState, useEffect} from "react";
+import { useState, useEffect} from "react";
 
 import { useParams,useNavigate } from "react-router-dom";
 
@@ -22,7 +22,7 @@ function Update(){
 
     });
     const url = "https://course-project-codesquad-comics-server.onrender.com/api/books"
-   
+   //get id to update 
 
     useEffect(() => { 
             fetch(`${url}/${bookID}`,{
@@ -43,10 +43,11 @@ function Update(){
             [name]: value
         }))
     };
+    // update the id that was previously sent
     const handleSubmitForm =(e) => {
         e.preventDefault();
     fetch(`https://course-project-codesquad-comics-server.onrender.com/api/books/${bookID}`, {
-    method: "PUT",
+    method: "Patch",
     body: JSON.stringify(bookData),
 })
   .then((response) => response.json())
