@@ -1,11 +1,13 @@
 
 import { useState, useEffect} from "react";
-
 import { useParams,useNavigate } from "react-router-dom";
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function Update(){
-    const {bookID} =useParams();
+    const {id} = useParams();
+    console.log("update page ID:",id);
+
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -26,19 +28,20 @@ function Update(){
    //get id to update 
 
     useEffect(() => { 
-            fetch(`${API_BASE_URL}/${bookID}`)
+            fetch(`${API_BASE_URL}/${id}`)
             
         .then((response) => response.json())
         .then((result) => {
-            if(result.data){
+            if(result.data?.book){
 
-             setBookData(result.data);}
+             setBookData(result.data.book);}
              else {
                 setErrorMessage("Book not found");
              }
-             navigate("/admin")})
+            })
+            
         .catch((error) => console.log(error));
-    },{bookID})
+    },[id]);
         // const foundBook = find(booksData => booksData._id === iD);
         // setBook(foundBook), [iD]}) 
     const handleChange = (e) =>{
@@ -53,14 +56,15 @@ function Update(){
     // update the id that was previously sent
     const handleSubmitForm =(e) => {
         e.preventDefault();
-    fetch(`${API_BASE_URL}/api/books/${bookID}`, {
-    method: "Patch",
+    fetch(`${API_BASE_URL}/api/books/${id}`, {
+    method: "PUT",
     headers:{ "Content-Type": "application/json",},
     body: JSON.stringify(bookData),
 })
   .then((response) => response.json())
   .then((result) => {
                 console.log(result)
+                navigate('/admin');
                 setErrorMessage(result.error.message);}
         )
             .catch(error =>{
@@ -79,9 +83,9 @@ function Update(){
         <label htmlFor="Text">Title</label>
         <input type="title" id="title" name="title" placeholder="title" value={bookData.title} onChange={handleChange}/> 
         <label htmlFor="author">Author</label>
-        <input type="Text" id="author" name="author" placeholder="author" onChange={handleChange}/> 
+        <input type="Text" id="author" name="author" placeholder="author" value={bookData.author}onChange={handleChange}/> 
         <label htmlFor="publisher">Publisher</label>
-        <select name="publisher" id="publisher" placeholder="select"  onChange={handleChange} required > 
+        <select name="publisher" id="publisher" placeholder="select" value={bookData.publisher} onChange={handleChange} required > 
             <option value="" >Select an option</option> 
             <option value="Marvel">Marvel</option>
             <option value="DC Comics">DC Comics</option>
@@ -94,15 +98,15 @@ function Update(){
             <option value="VIZ Media LLC">VIZ Media LLC</option>
         </select>
         <label htmlFor="genre">Genre</label>
-        <input type="text" id="genre" name="genre" placeholder="genre" onChange={handleChange} />
+        <input type="text" id="genre" name="genre" placeholder="genre" value={bookData.genre} onChange={handleChange} />
         <label htmlFor="pages">Number of Pages</label>
-        <input type="number" id="pages" name="pages" placeholder="Number of pages"onChange={handleChange}/>
+        <input type="number" id="pages" name="pages" placeholder="Number of pages" value={bookData.pages}onChange={handleChange}/>
         <label htmlFor="rating">Rating</label>
-        <input type="number" id="rating" name="rating"  maxLength="3" size="3"onChange={handleChange} />
+        <input type="number" id="rating" name="rating"  maxLength="3" size="3" value={bookData.rating}onChange={handleChange} />
         <label htmlFor="synopsis">Synopsis</label>
-        <textarea name="synopsis" id="synopsis" />
+        <textarea name="synopsis" id="synopsis" value={bookData.synopsis}onChange={handleChange} />
         <button>SUBMIT</button>
-        {errorMessage && <p>(errorMessage)</p>}
+        {errorMessage && <p>{errorMessage}</p>}
     </form>
 </div>
 

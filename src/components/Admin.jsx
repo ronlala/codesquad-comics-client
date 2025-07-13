@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function Admin(){
+
   const [bookie, setBookies] = useState([])
       useEffect(() =>{
             fetch(`${API_BASE_URL}`)
@@ -56,7 +57,7 @@ const handleDelete = (id) => {
       {bookie.map((book) => ( 
         <tr key={book._id}>
           <td>{book.title}</td>
-         <td>  <Link to={`/update/${book.id}`}><button>EDIT</button></Link></td>
+         <td>  <Link to={`/update/${book._id}`}><button>EDIT</button></Link></td>
            <td><button onClick={() => handleDelete(book._id)} >DELETE</button></td> 
         </tr> ))}
 

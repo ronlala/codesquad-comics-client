@@ -39,16 +39,13 @@ function App() {
   <Route path= "/about" element={<About/>} />
   <Route path= "/admin" element={<Admin/>} />
   <Route path= "/create" element={<Create/>} />
-  <Route path= "/home" element={<Home/>}></Route>
-  {/* <Route path= "/Signup" element={<Signup/>} /> */}
-  {/* <Route path= "/Login" element={<Login/>} /> */}
-  <Route path= "/update" element={<Update/>} />
+  <Route path= "/home" element={<Home/>}/>
+  <Route path="/update/:id" element={<Update />} />
 </Routes>
     <Footer />
-    {/* <Signup user={user} setUser={setUser}/>
-    <Login user={user} setUser={setUser}/> */}
+   
    </div>
   )
 }
 
-export default App
+export default App;

@@ -1,10 +1,10 @@
 import { useState } from "react";
-// import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for redirection
+import {  useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function Create(){
-// const navigate = useNavigate();
+const navigate = useNavigate();
 
 const [errorMessage, setErrorMessage] = useState(null);
 //  const navigate = useNavigate();
@@ -32,7 +32,7 @@ const [bookData, setBook] = useState({
 
     const  handleFormSubmission = async(e) => {
        e.preventDefault();
-       console.log("BookSubmitted");
+       console.log("Book has been updated");
 
     
         fetch(`${API_BASE_URL}/create/new`, { 
@@ -44,8 +44,10 @@ const [bookData, setBook] = useState({
             })
             .then((response) => response.json())
             .then((result) => {
-                console.log(result)
-                setErrorMessage(result.error.message);}
+                console.log(result.success.message)
+                navigate('/admin');
+                setErrorMessage(result.error.message);
+                     }
         )
             .catch(error =>{
                 console.log(error)
@@ -53,7 +55,7 @@ const [bookData, setBook] = useState({
             });
         };
 
-  console.log(errorMessage);
+  console.log(" Your comic book has been added.");
 
     return(
        <main className="body_box">
@@ -61,7 +63,7 @@ const [bookData, setBook] = useState({
     <h1>CREATE NEW COMIC</h1>
     <form onSubmit={handleFormSubmission}>
         <label htmlFor="Text">Title</label>
-        <input type="title" id="title" name="title" placeholder="title" onChange={handleChange}/> 
+        <input type="title" id="title" name="title" placeholder="title" onChange={handleChange} /> 
         <label htmlFor="author">Author</label>
         <input type="Text" id="author" name="author" placeholder="author" onChange={handleChange}/> 
         <label htmlFor="publisher">Publisher</label>
@@ -84,9 +86,9 @@ const [bookData, setBook] = useState({
         <label htmlFor="rating">Rating</label>
         <input type="number" id="rating" name="rating"  maxLength="3" size="3"onChange={handleChange} />
         <label htmlFor="synopsis">Synopsis</label>
-        <textarea name="synopsis" id="synopsis" />
+        <textarea name="synopsis" id="synopsis" onChange={handleChange} value={bookData.synopsis} />
         <button>SUBMIT</button>
-        {errorMessage && <p>(errorMessage)</p>}
+        {errorMessage && <p>{errorMessage}</p>}
     </form>
 </div>
 </main>
