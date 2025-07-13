@@ -1,13 +1,41 @@
 import { useEffect, useState } from "react";
-import books from "../data/books";
+
 import { Link } from "react-router-dom"; 
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function Admin(){
   const [bookie, setBookies] = useState([])
-  useEffect(() =>{ setBookies(books);},[]);
+      useEffect(() =>{
+            fetch(`${API_BASE_URL}`)
+          .then(response => response.json()) 
+        .then((data) => {
+          setBookies(data.data.books)
+          console.log(data.data.books);
+        })
+        .catch((error) => {
+          if (error.name === "Abort") {
+            console.log("fetch Aborted");
+          }
+        });
+    }, []);
    console.log(bookie);
-    
+   
+const handleDelete = (id) => {
+    fetch(`${API_BASE_URL}/delete/${id}`, {
+      method: "DELETE",
+      headers: {
+                    "Content-Type": "application/json",
+                },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        setBookies((prevBooks) => prevBooks.filter((book) => book._id !== id));
+      })
+      .catch((error) => console.log(error));
+  };
+
     return(
 <main className="body_box">
   
@@ -25,67 +53,13 @@ function Admin(){
         </tr>
       </thead>
       <tbody>
-      {books.map((book) => ( 
+      {bookie.map((book) => ( 
         <tr key={book._id}>
           <td>{book.title}</td>
-          <Link to="/update"><td><button>EDIT</button></td></Link>
-          <Link to="/update"><td><button>DELETE</button></td> </Link>
+         <td>  <Link to={`/update/${book.id}`}><button>EDIT</button></Link></td>
+           <td><button onClick={() => handleDelete(book._id)} >DELETE</button></td> 
         </tr> ))}
-        {/* <tr>
-          <td>Black Panther: A Nation Under Our Feet Book 1</td>
-          <td><button>EDIT</button></td>
-          <td><button>DELETE</button></td>
-        </tr>
-        <tr>
-          <td>Fun Home: A Family Tragicomic</td>
-          <td><button>EDIT</button></td>
-          <td><button>DELETE</button></td>
-        </tr>
-        <tr>
-          <td> Hunter X Hunter Vol.1</td>
-          <td><button>EDIT</button></td>
-          <td><button>DELETE</button></td>
-        </tr>
-        <tr>
-          <td>Lumberjanes Vol.1</td>
-          <td><button>EDIT</button></td>
-          <td><button>DELETE</button></td>
-        </tr>
-        <tr>
-          <td>March: Book One</td>
-          <td><button>EDIT</button></td>
-          <td><button>DELETE</button></td>
-        </tr>
-        <tr>
-          <td>One Piece, Vol.1: Romance Dawn</td>
-          <td><button>EDIT</button></td>
-          <td><button>DELETE</button></td>
-        </tr>
-        <tr>
-          <td>Parable of Sower</td>
-          <td><button>EDIT</button></td>
-          <td><button>DELETE</button></td>
-        </tr>
-        <tr>
-          <td>Queer: A graphic History</td>
-          <td><button>EDIT</button></td>
-          <td><button>DELETE</button></td>
-        </tr>
-        <tr>
-          <td>The Walking Dead, Vol.1: Days Gone Bye</td>
-          <td><button>EDIT</button></td>
-          <td><button>DELETE</button></td>
-        </tr>
-        <tr>
-          <td>Wake: The Hidden History OF Women-Led Slave Revolts</td>
-          <td><button>EDIT</button></td>
-          <td><button>DELETE</button></td>
-        </tr>
-        <tr>
-          <td>Watchmen</td>
-          <td><button>EDIT</button></td>
-          <td><button>DELETE</button></td>
-        </tr> */}
+
       </tbody>
     </table>
     </div>

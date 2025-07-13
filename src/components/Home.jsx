@@ -1,4 +1,4 @@
-import books from "../data/books";
+
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -6,7 +6,23 @@ import { Link } from "react-router-dom";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 function Home(){
     const [bookie, setBookies] = useState([])
-    useEffect(() =>{setBookies(books);},[]);
+    useEffect(() =>{
+          fetch(`${API_BASE_URL}`)
+        .then(response => response.json()) 
+      .then((data) => {
+        setBookies(data.data.books)
+        console.log(data.data.books);
+      })
+      .catch((error) => {
+        if (error.name === "Abort") {
+          console.log("fetch Aborted");
+        }
+      });
+  }, []);
+        
+        
+        
+        // setBookies(books);},[]);
      console.log(bookie);
 
 return(
@@ -24,14 +40,7 @@ return(
          <h2>COMPLETE COMIC COLLECTION</h2>
          
          {bookie.map((book) => (
-            // <p key={book._id}>
-            // {book.img}
-            // {book.title}
-            // {book.author}
-            // {book.genre}
-            // {book.publisher}
-            // {book.rating}
-            // <a href="#">Details</a>
+      
 
             <p key={book._id}><a href="#"> <img src={`./images/${book.imageUrl}`}/></a> 
                 <br /> <em>{book.title}</em> <br />
@@ -40,98 +49,7 @@ return(
                 <Link to="/comiccard">Details</Link>
         
             </p>)) } 
-        {/* <article>
-            <p> <a href="#"><img src="public/images/watchmen.jpg" alt="Bright picture of the watchman comic " /> </a> 
-                <em>The watchmen </em>
-                by Alan moore 
-                5 stars 
-                <a href="#">Details</a>
-            </p> 
-        </article> */}
-        {/* <article>
-            <p> <a href="#"> <img src="public/images/hunter-x-hunter.jpg" alt="Picture of the hunter comic is a boy riding a frog"/> </a>
-                <em>Hunter X Hunter Vol. 1</em> 
-                by Yoshiro Togashi 
-                5 stars 
-                <a href="#">Details</a> 
-            </p>
-        </article> */}
-        {/* <article>
-            <p> <a href="#"> <img src="public/images/lumberjanes.jpg" alt="Picture of the 5 teens drawn as cartoon caracters"/></a> 
-                <em>Lumberjanes Vol.1</em> 
-                by Noelle Stevenson 
-                4 Stars 
-                <a href="#">Details</a>
-            </p>
-        </article>
-        <article>
-            <p> <a href="#"><img src="public/images/one-piece.jpg" alt="Picture of one piece character with red vest and straw hat with his two friends having fun"/> </a>
-                <em>One Piece, Vol.1: Romance Dawn</em> 
-                y Eiichiro Oda  5 stars 
-                <a href="#">Details</a> 
-            </p>
-        </article>
-        <article>
-            <p> <a href="#"><img src="public/images/wake.jpg" alt="Pictures of a group of minorities" /></a> 
-                <em>Wake: THe Hidden History of Women Led Slave Revolts</em> 
-                by Rebecca Hall 
-                4 Stars 
-                <a href="#">Details</a>
-            </p>
-        </article>
-        <article>
-            <p><a href="#"><img src="public/images/black-panther.jpg"  alt="Picture of man wearing a super hero suit that looks like a black panther"/></a>
-           
-                <em>Black Panther: A Nation Under our Feet Book 1</em> 
-                by Ta-Nehisi Coates 
-                3 Stars 
-                <a href="#">Details</a>
-           </p> 
-        </article>
-        <article>
-            <p> <a href="#"><img src="public/images/the-walking-dead.jpg" alt="Picture of walking dead comic which has zombies"/></a> 
-                <em>The Walking Dead, Vol.1: Days Gone Bye</em> 
-                by Robert Kirkman 
-                4 stars 
-                <a href="#">Details</a>
-            </p>
-        </article>
-        <article>
-            <p>
-                <a href="#"><img src="public/images/march.jpg" alt=" Images of african americans siting at a Counter for coloreds"/></a> 
-                <em>March: Book One</em> 
-                by John Lewis 
-                5 Stars 
-                <a href="#">Details</a>
-            </p>
-        </article>
-        <article>
-            <p>
-                <a href="#"><img src="public/images/batman.jpg" alt="Image of a man in batman costume jumping in the air at lightening"/></a> 
-                <em>Batman: The Dark Knight Returns</em> 
-                by Frank Miller 
-                3 stars 
-                <a href="#">Details</a>
-            </p>
-        </article>
-        <article>
-            <p>
-                <a href="#"><img src="public/images/queer.jpg" alt="image of a person holding an umbrella walking over an rainbow made of arrows"/></a>
-                <em>Queer: A Graphic History</em> 
-                by Meg-John Barker 
-                4 Stars
-                <a href="#">Details /</a>
-            </p>
-        </article>
-        <article>
-            <p>
-                <a href="#"><img src="public/images/parable-of-the-sower.jpg" alt="Image of a black woman with dreadlocks with serious face in front of fire"/></a>
-                <em>Parable of the Sower</em> 
-                by Octavia E Butler 
-                4 Stars 
-                <a href="#">Details</a>
-            </p>
-        </article> */}
+      
         <button>DISPLAY MORE</button>
         </div>
         </div>
